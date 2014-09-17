@@ -79,3 +79,16 @@ AV.Cloud.define("getArmors", function(request, response) {
     }
   });
 });
+AV.Cloud.define("GetSomeArmors",function(request,response){
+  var query = new AV.Query("Armar");
+  query.setLimit(1);
+  query.setSkip(request.params.skip);
+  query.find({
+    success: function(results){
+      response.success(results);
+    },
+    error:function(){
+      response.error("some error happended");
+    }
+  })
+});
